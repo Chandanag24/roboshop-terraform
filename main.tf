@@ -16,7 +16,7 @@ module "alb" {
   source   = "git::https://github.com/Chandanag24/tf-module-alb.git"
   for_each = var.alb
   internal = each.value["internal"]
-  ld_type= each.value["lb_type"]
+  lb_type= each.value["lb_type"]
   sg_ingress_cidr = each.value["sg_ingress_cidr"]
   vpc_id = each.value["internal"] ? lookup(lookup(module.vpc, "main", null), "vpc_id",null): var.default_vpc_id
   subnets = each.value["internal"] ? data.aws_subnets.subnets.ids : local.app_subnets
