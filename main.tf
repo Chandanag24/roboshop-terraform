@@ -25,6 +25,16 @@ module "alb" {
   env = var.env
 }
 
+module "docdb" {
+  source   = "git::https://github.com/Chandanag24/tf-module-docdb.git"
+  for_each = var.docdb
+  tags = var.tags
+  env = var.env
+}
+
+
+
+
 output "vpc" {
   value = module.vpc
 }

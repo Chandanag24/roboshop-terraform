@@ -7,3 +7,4 @@ variable "env" {}
 variable "alb" {}
 variable "vpc_id" {}
 variable "lb_type" {}
+variable "docdb" {}
