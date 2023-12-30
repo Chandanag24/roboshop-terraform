@@ -8,4 +8,3 @@ variable "alb" {}
 variable "vpc_id" {}
 variable "lb_type" {}
 variable "docdb" {}
-variable "kms_key_id" {}
