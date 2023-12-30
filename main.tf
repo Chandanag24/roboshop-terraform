@@ -12,25 +12,36 @@ module "vpc" {
 }
 
 
-module "alb" {
-  source   = "git::https://github.com/Chandanag24/tf-module-alb.git"
-  for_each = var.alb
-  internal = each.value["internal"]
-  lb_type= each.value["lb_type"]
-  sg_ingress_cidr = each.value["sg_ingress_cidr"]
-  vpc_id = each.value["internal"] ? lookup(lookup(module.vpc, "main", null), "vpc_id",null): var.default_vpc_id
-  subnets = each.value["internal"] ? local.app_subnets : data.aws_subnets.subnets.ids
-  sg_port = each.value["sg_port"]
-  tags = var.tags
-  env = var.env
-}
+#module "alb" {
+#  source   = "git::https://github.com/Chandanag24/tf-module-alb.git"
+#  for_each = var.alb
+#  internal = each.value["internal"]
+#  lb_type= each.value["lb_type"]
+#  sg_ingress_cidr = each.value["sg_ingress_cidr"]
+#  vpc_id = each.value["internal"] ? lookup(lookup(module.vpc, "main", null), "vpc_id",null): var.default_vpc_id
+#  subnets = each.value["internal"] ? local.app_subnets : data.aws_subnets.subnets.ids
+#  sg_port = each.value["sg_port"]
+#  tags = var.tags
+#  env = var.env
+#}
 
 module "docdb" {
-  source   = "git::https://github.com/Chandanag24/tf-module-docdb.git"
-  for_each = var.docdb
-  tags = var.tags
-  env = var.env
-  subnet_ids = local.db_subnets
+  source = "git::https://github.com/raghudevopsb74/tf-module-docdb.git"
+  tags   = var.tags
+  env    = var.env
+
+  for_each                = var.docdb
+  subnet_ids              = local.db_subnets
+  backup_retention_period = each.value["backup_retention_period"]
+  preferred_backup_window = each.value["preferred_backup_window"]
+  skip_final_snapshot     = each.value["skip_final_snapshot"]
+  vpc_id                  = local.vpc_id
+  sg_ingress_cidr         = local.app_subnets_cidr
+  engine_version          = each.value["engine_version"]
+  engine_family           = each.value["engine_family"]
+  instance_count          = each.value["instance_count"]
+  instance_class          = each.value["instance_class"]
+  kms_key_id              = var.kms_key_id
 }
 
 
