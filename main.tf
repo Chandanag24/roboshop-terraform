@@ -37,7 +37,7 @@ module "docdb" {
   vpc_id                  = local.vpc_id
   sg_ingress_cidr         = local.app_subnets_cidr
   engine_version          = each.value["engine_version"]
-#  engine_family           = each.value["engine_family"]
+  engine_family           = each.value["engine_family"]
 }
 
 
