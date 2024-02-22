@@ -69,9 +69,7 @@ module "elasticache" {
   source = "git::https://github.com/raghudevopsb74/tf-module-elasticache.git"
   tags   = var.tags
   env    = var.env
-
   for_each = var.elasticache
-
   subnet_ids       = local.db_subnets
   vpc_id           = local.vpc_id
   sg_ingress_cidr  = local.app_subnets_cidr
@@ -84,3 +82,18 @@ module "elasticache" {
   engine_version   = each.value["engine_version"]
 }
 
+module "rabbitmq" {
+  source  = "git::https://github.com/raghudevopsb74/tf-module-rabbitmq.git"
+  tags    = var.tags
+  env     = var.env
+  zone_id = var.zone_id
+
+  for_each = var.rabbitmq
+
+  subnet_ids       = local.db_subnets
+  vpc_id           = local.vpc_id
+  sg_ingress_cidr  = local.app_subnets_cidr
+  instance_type    = each.value["instance_type"]
+  ssh_ingress_cidr = var.ssh_ingress_cidr
+  kms_key_id       = var.kms_key_id
+}
