@@ -12,4 +12,5 @@ variable "rds" {}
 variable "elasticache" {}
 variable "rabbitmq" {}
 variable "zone_id" {}
+variable "engine_family" {}
 
