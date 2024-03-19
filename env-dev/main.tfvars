@@ -1,3 +1,23 @@
+default_vpc_id             = "vpc-0a8e3e6a0d6cb90d9"
+default_vpc_cidr           = "172.31.0.0/16"
+default_vpc_route_table_id = "rtb-0b9a867762d6530ba"
+zone_id                    = "Z0021413JFIQEJP9ZO9Z"
+env                        = "dev"
+ssh_ingress_cidr           = ["172.31.85.208/32"]
+monitoring_ingress_cidr    = ["172.31.91.26/32"]
+acm_certificate_arn        = "arn:aws:acm:us-east-1:633788536644:certificate/ad9f90f9-1f68-48a2-87d4-d31c6d91a0cc"
+kms_key_id                 = "arn:aws:kms:us-east-1:633788536644:key/dce90622-5a23-4f82-a639-be841f534702"
+
+tags = {
+  company_name  = "ABC Tech"
+  business_unit = "Ecommerce"
+  project_name  = "robotshop"
+  cost_center   = "ecom_rs"
+  created_by    = "terraform"
+}
+
+az = ["us-east-1a", "us-east-1b"]
+
 vpc = {
   main = {
     cidr = "10.0.0.0/16"
@@ -72,6 +92,7 @@ elasticache = {
     engine_version   = "6.2"
   }
 }
+
 rabbitmq = {
   main = {
     instance_type = "t3.small"
