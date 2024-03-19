@@ -72,3 +72,8 @@ elasticache = {
     engine_version   = "6.2"
   }
 }
+rabbitmq = {
+  main = {
+    instance_type = "t3.small"
+  }
+}
