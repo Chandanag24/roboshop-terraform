@@ -4,7 +4,7 @@ default_vpc_route_table_id = "rtb-0346b1b2beaecb3c8"
 zone_id                    = "Z0021413JFIQEJP9ZO9Z"
 env                        = "dev"
 ssh_ingress_cidr           = ["172.31.85.208/32"]
-kms_key_id                 = "arn:aws:kms:us-east-1:633788536644:key/dce90622-5a23-4f82-a639-be841f534702"
+kms_key_id                 = "arn:aws:kms:us-east-1:596930915629:key/7a9bcba3-7460-41ec-a871-b3f001f3cf29"
 
 tags = {
   company_name  = "ABC Tech"
