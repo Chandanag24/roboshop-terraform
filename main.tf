@@ -108,7 +108,9 @@ module "apps" {
   zone_id = var.zone_id
 
   for_each = var.apps
-
+  component = each.key
+  port = each.value["port"]
+  instance_type = each.value["instance_type"]
   subnet_ids      = local.db_subnets
   vpc_id          = local.vpc_id
   sg_ingress_cidr = local.app_subnets_cidr
