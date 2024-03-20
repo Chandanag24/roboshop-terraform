@@ -1,9 +1,9 @@
 default_vpc_id             = "vpc-0a1b68119a180ef19"
 default_vpc_cidr           = "172.31.0.0/16"
 default_vpc_route_table_id = "rtb-0346b1b2beaecb3c8"
-zone_id                    = "Z0021413JFIQEJP9ZO9Z"
+zone_id                    = "Z0243240SL2ZOPCKERO1"
 env                        = "dev"
-ssh_ingress_cidr           = ["172.31.85.208/32"]
+ssh_ingress_cidr           = ["172.31.91.23"]
 #kms_key_id                 = "arn:aws:kms:us-east-1:596930915629:key/7a9bcba3-7460-41ec-a871-b3f001f3cf29"
 
 tags = {
@@ -92,5 +92,11 @@ elasticache = {
 rabbitmq = {
   main = {
     instance_type = "t3.small"
+  }
+}
+
+apps = {
+  frontend = {
+    instance_type = "t3.micro"
   }
 }
